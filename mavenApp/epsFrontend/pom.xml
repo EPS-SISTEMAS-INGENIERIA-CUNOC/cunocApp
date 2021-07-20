@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>gt.edu.usac.cunoc.ingenieria</groupId>
@@ -30,7 +30,7 @@
 
   <build>
     <finalName>epsFrontend</finalName>
-    <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
+    <pluginManagement>      <!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
         <plugin>
           <artifactId>maven-clean-plugin</artifactId>
@@ -62,62 +62,78 @@
           <version>2.8.2</version>
         </plugin>
         <plugin>
-            <groupId>com.github.eirslett</groupId>
-            <artifactId>frontend-maven-plugin</artifactId>
-            <version>1.6</version>
+          <groupId>com.github.eirslett</groupId>
+          <artifactId>frontend-maven-plugin</artifactId>
+          <version>1.6</version>
 
-            <configuration>
-                <workingDirectory>src/main/cunoc</workingDirectory>
-            </configuration>
+          <configuration>
+            <workingDirectory>src/main/cunoc</workingDirectory>
+          </configuration>
 
-            <executions>
+          <executions>
 
-                <execution>
-                    <id>install-node-and-npm</id>
-                    <goals>
-                        <goal>install-node-and-npm</goal>
-                    </goals>
-                    <configuration>
-                        <nodeVersion>v10.16.1</nodeVersion>
-                    </configuration>
-                </execution>
+            <execution>
+              <id>install-node-and-npm</id>
+              <goals>
+                <goal>install-node-and-npm</goal>
+              </goals>
+              <configuration>
+                <nodeVersion>v10.16.1</nodeVersion>
+              </configuration>
+            </execution>
 
-                <execution>
-                    <id>npm install</id>
-                    <goals>
-                        <goal>npm</goal>
-                    </goals>
-                    <configuration>
-                        <arguments>install</arguments>
-                    </configuration>
-                </execution>
-                <execution>
-                    <id>npm build</id>
-                    <goals>
-                        <goal>npm</goal>
-                    </goals>
-                    <configuration>
-                        <arguments>run buildProduction</arguments>
-                    </configuration>
-                    <phase>generate-resources</phase>
-                </execution>
-            </executions>
-    </plugin>
-    <plugin>
-        <artifactId>maven-war-plugin</artifactId>
-        <version>3.2.2</version>
-        <configuration>
+            <execution>
+              <id>npm install</id>
+              <goals>
+                <goal>npm</goal>
+              </goals>
+              <configuration>
+                <arguments>install</arguments>
+              </configuration>
+            </execution>
+            <execution>
+              <id>npm build</id>
+              <goals>
+                <goal>npm</goal>
+              </goals>
+              <configuration>
+                <arguments>run buildProduction</arguments>
+              </configuration>
+              <phase>generate-resources</phase>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <artifactId>maven-war-plugin</artifactId>
+          <version>3.2.2</version>
+          <configuration>
             <failOnMissingWebXml>false</failOnMissingWebXml>
 
             <!-- Add frontend folder to war package -->
             <webResources>
-                <resource>
-                    <directory>src/main/cunoc/dist/cunoc</directory>
-                </resource>
+              <resource>
+                <directory>src/main/cunoc/dist/cunoc</directory>
+              </resource>
             </webResources>
 
-        </configuration>
-    </plugin>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.tomcat.maven</groupId>
+          <artifactId>tomcat7-maven-plugin</artifactId>
+          <version>2.2</version>
+          <configuration>
+            <!--                                Descomentar para pruebas locales-->
+            <!--                                <url>http://localhost:8080/manager/text</url>-->
+            <!--                                Descomentar para pruebas en AWS-->
+            <url>http://18.116.200.191:8080/manager/text</url>
+            <server>TomcatServer</server>
+            <!--                                Descomentar para pruebas en AWS-->
+            <username>${env.USER_NAME}</username>
+            <password>${env.ACCESS_TOKEN}</password>
+            <path>/epsBackend</path>
+          </configuration>
+        </plugin>
       </plugins>
     </pluginManagement>
   </build>
