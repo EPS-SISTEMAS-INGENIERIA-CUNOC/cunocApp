@@ -151,7 +151,7 @@
             <!-- Add frontend folder to war package -->
             <webResources>
               <resource>
-                <directory>src/main/cunoc/dist</directory>
+                <directory>src/main/cunoc/distFolder</directory>
               </resource>
             </webResources>
 
