@@ -34,6 +34,7 @@ jobs:
       run: npm install
     - name: Instalar angular ClI
       run: npm install -g @angular/cli
+      run: npm install --save-dev @angular-devkit/build-angular
     - name: Build with NPM
       run: npm run buildProduction
       working-directory: mavenApp/epsFrontend/src/main/cunoc
