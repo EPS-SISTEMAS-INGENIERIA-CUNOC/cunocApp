@@ -30,8 +30,15 @@ jobs:
         key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
         restore-keys: |
           ${{ runner.os }}-maven-
+    - name: Actualizar NPM
+      run: npm i -g npm-check-updates
+      working-directory: mavenApp/epsFrontend/src/main/cunoc
+    - name: Limpiar NPM
+      run: ncu -u
+      working-directory: mavenApp/epsFrontend/src/main/cunoc
     - name: Instalar dependencias NPM
       run: npm install
+      working-directory: mavenApp/epsFrontend/src/main/cunoc
     - name: Instalar angular ClI
       run: npm install -g @angular/cli@12.1.2
     - name: Guardar angular ClI
