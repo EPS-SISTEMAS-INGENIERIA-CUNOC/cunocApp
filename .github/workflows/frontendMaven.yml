@@ -35,6 +35,8 @@ jobs:
     - name: Instalar angular ClI
       run: npm install -g @angular/cli
     - name: Guardar angular ClI
+      run: npm install --save-dev @angular-devkit/build-angular
+    - name: Guardar angular ClI 2
       run: npm i --save-dev @angular/compiler-cli
     - name: Build with NPM
       run: npm run buildProduction
