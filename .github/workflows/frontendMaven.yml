@@ -38,6 +38,8 @@ jobs:
       run: npm install --save-dev @angular-devkit/build-angular
     - name: Guardar angular ClI 2
       run: npm i --save-dev @angular/compiler-cli
+    - name: Version angular ClI
+      run: ng --version
     - name: Build with NPM
       run: npm run buildProduction
       working-directory: mavenApp/epsFrontend/src/main/cunoc
