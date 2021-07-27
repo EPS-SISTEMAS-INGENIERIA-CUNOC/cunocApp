@@ -30,6 +30,10 @@ jobs:
         key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
         restore-keys: |
           ${{ runner.os }}-maven-
+    - name: Instalar dependencias NPM
+      run: npm install
+    - name: Instalar angular ClI
+      run: npm install -g @angular/cli
     - name: Build with NPM
       run: npm run buildProduction
       working-directory: mavenApp/epsFrontend/src/main/cunoc
